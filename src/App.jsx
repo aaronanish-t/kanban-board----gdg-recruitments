@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
-  // 1. Initialize Tasks from LocalStorage
+  
   const [tasks, setTasks] = useState(() => {
     const saved = localStorage.getItem('kanban-final-v4');
     return saved ? JSON.parse(saved) : [
@@ -14,12 +14,12 @@ function App() {
   
   const [newTaskTitle, setNewTaskTitle] = useState('');
   
-  // 2. Initialize Theme
+  
   const [isDarkMode, setIsDarkMode] = useState(() => {
     return localStorage.getItem('kanban-theme') === 'dark';
   });
 
-  // 3. Persistence & Theme Effects
+  
   useEffect(() => {
     localStorage.setItem('kanban-final-v4', JSON.stringify(tasks));
   }, [tasks]);
@@ -29,7 +29,7 @@ function App() {
     document.body.className = isDarkMode ? 'dark-mode' : '';
   }, [isDarkMode]);
 
-  // 4. Task Management
+  
   const addTask = () => {
     if (!newTaskTitle.trim()) return;
     const newTask = { id: Date.now(), title: newTaskTitle, status: 'todo' };
@@ -47,7 +47,7 @@ function App() {
     }
   };
 
-  // 5. Drag & Drop Handlers
+  
   const onDragStart = (e, id) => {
     e.dataTransfer.setData("taskId", id);
   };
